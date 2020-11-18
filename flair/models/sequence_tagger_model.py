@@ -1138,6 +1138,7 @@ class MultiTagger:
             all_tag_prob: bool = False,
             verbose: bool = False,
             return_loss: bool = False,
+            post_predict_hook = None
     ):
         """
         Predict sequence tags for Named Entity Recognition task
@@ -1161,7 +1162,7 @@ class MultiTagger:
         if isinstance(sentences, Sentence):
             sentences = [sentences]
         for name, tagger in self.name_to_tagger.items():
-            print(name, tagger)
+            print(name)
             print(sentences)
             tagger.predict(
                 sentences=sentences,
@@ -1172,6 +1173,9 @@ class MultiTagger:
                 return_loss=return_loss,
                 embedding_storage_mode="cpu",
             )
+            if post_predict_hook:
+                for sentence in sentences:
+                    post_predict_hook(name, sentence)
 
         # clear embeddings after predicting
         for sentence in sentences:
