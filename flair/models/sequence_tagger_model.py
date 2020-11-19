@@ -1175,7 +1175,7 @@ class MultiTagger:
             )
             if post_predict_hook:
                 for sentence in sentences:
-                    post_predict_hook(name, sentence)
+                    sentence = post_predict_hook(name, sentence)
 
         # clear embeddings after predicting
         for sentence in sentences:
