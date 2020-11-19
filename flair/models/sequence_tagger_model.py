@@ -320,6 +320,9 @@ class SequenceTagger(flair.nn.Model):
         you wish to not only predict, but also keep the generated embeddings in CPU or GPU memory respectively.
         'gpu' to store embeddings in GPU memory.
         """
+
+        print("SEQ:", sentences)
+
         if label_name == None:
             label_name = self.tag_type
 
