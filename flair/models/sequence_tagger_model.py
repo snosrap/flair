@@ -1174,8 +1174,7 @@ class MultiTagger:
                 embedding_storage_mode="cpu",
             )
             if post_predict_hook:
-                for sentence in sentences:
-                    sentence = post_predict_hook(name, sentence)
+                sentences = [post_predict_hook(name, s) for s in sentences]
 
         # clear embeddings after predicting
         for sentence in sentences:
