@@ -358,6 +358,7 @@ class SequenceTagger(flair.nn.Model):
             overall_loss = 0
             batch_no = 0
             for batch in dataloader:
+                print("BAT:", batch)
 
                 batch_no += 1
 
