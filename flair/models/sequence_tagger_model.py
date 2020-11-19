@@ -382,6 +382,8 @@ class SequenceTagger(flair.nn.Model):
                     get_all_tags=all_tag_prob,
                 )
 
+                print("TAGS", tags, all_tags)
+
                 for (sentence, sent_tags) in zip(batch, tags):
                     for (token, tag) in zip(sentence.tokens, sent_tags):
                         token.add_tag_label(label_name, tag)
