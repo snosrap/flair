@@ -1162,8 +1162,7 @@ class MultiTagger:
         if isinstance(sentences, Sentence):
             sentences = [sentences]
         for name, tagger in self.name_to_tagger.items():
-            print(name)
-            print(sentences)
+            print("NAME:", name)
             tagger.predict(
                 sentences=sentences,
                 mini_batch_size=mini_batch_size,
