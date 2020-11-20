@@ -891,7 +891,7 @@ class Sentence(DataPoint):
         s = Sentence()
         for token in self.tokens:
             nt = Token(token.text)
-            for tag_type in token.tags:
+            for tag_type in token.annotation_layers.keys():
                 nt.add_label(
                     tag_type,
                     token.get_tag(tag_type).value,
