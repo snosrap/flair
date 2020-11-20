@@ -1149,7 +1149,7 @@ class MultiTagger:
         otherwise only the score of the best tag is returned
         :param verbose: set to True to display a progress bar
         :param return_loss: set to True to return loss
-        :param post_predict_hook: a callback method that will be called after each individual tagger on each sentence -- e.g., post_predict_hook(name, sentence)
+        :param post_predict_hook: a callback method that will be called after each tagger on each sentence -- `post_predict_hook(name:str, sentence:Sentence) -> None`
         """
         if any(["hunflair" in name for name in self.name_to_tagger.keys()]):
             if "spacy" not in sys.modules:
