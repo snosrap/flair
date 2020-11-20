@@ -1173,7 +1173,8 @@ class MultiTagger:
             print("Sent", sentences)
             if pre_predict_hook:
                 print("pre_predict_hook")
-                sentences = [pre_predict_hook(name, s) for s in sentences]
+                for sentence in sentences:
+                    pre_predict_hook(name, sentence)
             tagger.predict(
                 sentences=sentences,
                 mini_batch_size=mini_batch_size,
@@ -1185,7 +1186,8 @@ class MultiTagger:
             )
             if post_predict_hook:
                 print("post_predict_hook")
-                sentences = [post_predict_hook(name, s) for s in sentences]
+                for sentence in sentences:
+                    post_predict_hook(name, sentence)
 
         # clear embeddings after predicting
         for sentence in sentences:
