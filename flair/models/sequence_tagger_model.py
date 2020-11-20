@@ -1144,7 +1144,6 @@ class MultiTagger:
             all_tag_prob: bool = False,
             verbose: bool = False,
             return_loss: bool = False,
-            pre_predict_hook = None,
             post_predict_hook = None
     ):
         """
@@ -1169,12 +1168,6 @@ class MultiTagger:
         if isinstance(sentences, Sentence):
             sentences = [sentences]
         for name, tagger in self.name_to_tagger.items():
-            print("Name", name)
-            print("Sent", sentences)
-            if pre_predict_hook:
-                print("pre_predict_hook")
-                for sentence in sentences:
-                    pre_predict_hook(name, sentence)
             tagger.predict(
                 sentences=sentences,
                 mini_batch_size=mini_batch_size,
@@ -1185,7 +1178,6 @@ class MultiTagger:
                 embedding_storage_mode="cpu",
             )
             if post_predict_hook:
-                print("post_predict_hook")
                 for sentence in sentences:
                     post_predict_hook(name, sentence)
 
