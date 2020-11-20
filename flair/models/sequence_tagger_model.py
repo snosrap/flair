@@ -2,7 +2,7 @@ import logging
 import sys
 
 from pathlib import Path
-from typing import List, Union, Optional, Dict
+from typing import List, Union, Optional, Dict, Callable
 from warnings import warn
 
 import numpy as np
@@ -1138,7 +1138,7 @@ class MultiTagger:
             all_tag_prob: bool = False,
             verbose: bool = False,
             return_loss: bool = False,
-            post_predict_hook = None
+            post_predict_hook: Callable[[str, Sentence], None] = None
     ):
         """
         Predict sequence tags for Named Entity Recognition task
@@ -1149,6 +1149,7 @@ class MultiTagger:
         otherwise only the score of the best tag is returned
         :param verbose: set to True to display a progress bar
         :param return_loss: set to True to return loss
+        :param post_predict_hook: a callback method that will be called after each individual tagger on each sentence -- e.g., post_predict_hook(name, sentence)
         """
         if any(["hunflair" in name for name in self.name_to_tagger.keys()]):
             if "spacy" not in sys.modules:
