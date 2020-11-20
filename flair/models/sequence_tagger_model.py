@@ -321,8 +321,6 @@ class SequenceTagger(flair.nn.Model):
         'gpu' to store embeddings in GPU memory.
         """
 
-        print("SEQ:", sentences)
-
         if label_name == None:
             label_name = self.tag_type
 
@@ -358,7 +356,6 @@ class SequenceTagger(flair.nn.Model):
             overall_loss = 0
             batch_no = 0
             for batch in dataloader:
-                print("BAT:", batch)
 
                 batch_no += 1
 
@@ -381,8 +378,6 @@ class SequenceTagger(flair.nn.Model):
                     transitions=transitions,
                     get_all_tags=all_tag_prob,
                 )
-
-                print("TAGS", tags, all_tags)
 
                 for (sentence, sent_tags) in zip(batch, tags):
                     for (token, tag) in zip(sentence.tokens, sent_tags):
